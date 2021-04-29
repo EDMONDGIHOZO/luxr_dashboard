@@ -4,6 +4,9 @@ import "./index.css";
 import App from "./App";
 import axios from "axios";
 
+const url = process.env.LOCAL_API_URL;
+console.log(url);
+
 axios.defaults.baseURL = "http://localhost:8000/api/";
 axios.defaults.withCredentials = true;
 axios.defaults.responseType = "json";

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Wrapper from "./Wrapper";
+import Wrapper from "../Wrapper";
 
 class Dashboard extends Component {
 	render() {
