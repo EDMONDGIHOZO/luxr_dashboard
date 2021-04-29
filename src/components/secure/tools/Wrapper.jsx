@@ -19,6 +19,7 @@ class Wrapper extends Component {
 						</div>
 						<div className="flex flex-col w-full pl-0 md:p-4 md:space-y-4">
 							<TopBar />
+							{this.props.children}
 						</div>
 					</div>
 				</main>
