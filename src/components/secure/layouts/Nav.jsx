@@ -1,7 +1,21 @@
 import React, { Component } from "react";
+import axios from "axios";
+import { Redirect } from "react-router-dom";
 
 class Nav extends Component {
+	state = {
+		redirect: false,
+	};
+
+	logout = async (e) => {
+		await axios.post("logout", {});
+		this.setState({ redirect: true });
+	};
+
 	render() {
+		if (this.state.redirect) {
+			return <Redirect to={"/login"} />;
+		}
 		return (
 			<nav className="mt-6">
 				<div>
@@ -130,6 +144,13 @@ class Nav extends Component {
 						</span>
 						<span className="mx-4 text-sm font-normal">Settings</span>
 					</a>
+					<button
+						type="button"
+						onClick={this.logout}
+						className="bg-gray-500  text-white px-4 py-2 w-full transition duration-500 ease select-none hover:bg-red-600 focus:outline-none focus:shadow-outline"
+					>
+						LOGOUT
+					</button>
 				</div>
 			</nav>
 		);
