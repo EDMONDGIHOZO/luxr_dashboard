@@ -2,9 +2,29 @@ import React, { Component } from "react";
 import Nav from "../layouts/Nav";
 import TopBar from "../layouts/TopBar";
 import logo from "../../../images/logo.svg";
+import axios from "axios";
+import { Redirect } from "react-router-dom";
 
 class Wrapper extends Component {
+	state = {
+		redirect: false,
+	};
+	componentDidMount = async () => {
+		try {
+			const response = await axios.get("me");
+			console.log(response);
+		} catch (error) {
+			this.setState({
+				redirect: true,
+			});
+		}
+	};
+
 	render() {
+		if (this.state.redirect) {
+			return <Redirect to={"/login"} />;
+		}
+
 		return (
 			<>
 				<main className="bg-gray-100 dark:bg-gray-800 rounded-2xl relative h-screen overflow-hidden relative">

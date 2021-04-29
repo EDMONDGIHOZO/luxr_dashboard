@@ -1,8 +1,42 @@
 import React, { Component } from "react";
 import logo from "../../images/logo.svg";
+import axios from "axios";
+import { Redirect } from "react-router-dom";
 
 class Register extends Component {
+	// user information variables
+	first_name = "";
+	last_name = "";
+	email = "";
+	password = "";
+	confirm_password = "";
+
+	// app
+	state = {
+		redirect: false,
+	};
+
+	// filling the form
+	register = async (e) => {
+		e.preventDefault();
+
+		await axios.post("/register", {
+			email: this.email,
+			password: this.password,
+			confirm_password: this.confirm_password,
+			first_name: this.first_name,
+			last_name: this.last_name,
+		});
+
+		this.setState({
+			redirect: true,
+		});
+	};
+
 	render() {
+		if (this.state.redirect) {
+			return <Redirect to={"/login"} />;
+		}
 		return (
 			<>
 				<div className="h-full py-5 bg-gray-500">
@@ -18,20 +52,21 @@ class Register extends Component {
 								Create Account
 							</h2>
 
-							<form className="mt-10" method="POST">
+							<form className="mt-10" onSubmit={this.register}>
 								{/* <!-- first name Input --> */}
 								<label
-									for="first_name"
+									htmlFor="first_name"
 									className="block text-xs font-semibold  text-gray-600 uppercase"
 								>
 									First Name
 								</label>
 								<input
+									onChange={(e) => (this.first_name = e.target.value)}
 									id="first_name"
 									type="text"
 									name="first_name"
 									placeholder="First name"
-									autocomplete="first_name"
+									autoComplete="first_name"
 									className="block w-full py-3 px-1 mt-2 
                     text-gray-800 appearance-none 
                     border-b-2 border-gray-100
@@ -40,17 +75,18 @@ class Register extends Component {
 								/>
 								{/* <!-- last name Input --> */}
 								<label
-									for="last_name"
+									htmlFor="last_name"
 									className="block text-xs font-semibold mt-5  text-gray-600 uppercase"
 								>
 									Last Name
 								</label>
 								<input
-									id="first_name"
+									onChange={(e) => (this.last_name = e.target.value)}
+									id="last_name"
 									type="text"
 									name="last_name"
 									placeholder="Last name"
-									autocomplete="last_name"
+									autoComplete="last_name"
 									className="block w-full py-3 px-1 mt-2 
                     text-gray-800 appearance-none 
                     border-b-2 border-gray-100
@@ -60,17 +96,18 @@ class Register extends Component {
 
 								{/* <!-- Email Input --> */}
 								<label
-									for="email"
+									htmlFor="email"
 									className="block text-xs font-semibold mt-5 text-gray-600 uppercase"
 								>
 									E-mail
 								</label>
 								<input
+									onChange={(e) => (this.email = e.target.value)}
 									id="email"
 									type="email"
 									name="email"
 									placeholder="e-mail address"
-									autocomplete="email"
+									autoComplete="email"
 									className="block w-full py-3 px-1 mt-2 
                     text-gray-800 appearance-none 
                     border-b-2 border-gray-100
@@ -80,17 +117,18 @@ class Register extends Component {
 
 								{/* <!-- Password Input --> */}
 								<label
-									for="password"
+									htmlFor="password"
 									className="block mt-2 text-xs font-semibold text-gray-600 uppercase"
 								>
 									Password
 								</label>
 								<input
+									onChange={(e) => (this.password = e.target.value)}
 									id="password"
 									type="password"
 									name="password"
 									placeholder="password"
-									autocomplete="current-password"
+									autoComplete="current-password"
 									className="block w-full py-3 px-1 mt-2 mb-4
                     text-gray-800 appearance-none 
                     border-b-2 border-gray-100
@@ -99,17 +137,18 @@ class Register extends Component {
 								/>
 								{/* <!-- Password confirm Input --> */}
 								<label
-									for="passwordConfirm"
+									htmlFor="passwordConfirm"
 									className="block mt-2 text-xs my-5 font-semibold text-gray-600 uppercase"
 								>
 									Password
 								</label>
 								<input
+									onChange={(e) => (this.confirm_password = e.target.value)}
 									id="passwordConfirm"
 									type="password"
 									name="passwordConfirm"
 									placeholder="password"
-									autocomplete="confirm-password"
+									autoComplete="confirm-password"
 									className="block w-full py-3 px-1 mt-2 mb-4
                     text-gray-800 appearance-none 
                     border-b-2 border-gray-100
