@@ -25,7 +25,7 @@ class Login extends Component {
 		}
 		return (
 			<>
-				<div className="h-screen py-5 bg-gray-500">
+				<div className="h-screen py-5 bg-gray-700">
 					<div className="grid place-items-center mx-2 my-20 sm:my-auto">
 						<img src={logo} alt="logo" className="w-28 h-28 my-5" />
 						{/* <!-- Auth Card --> */}
