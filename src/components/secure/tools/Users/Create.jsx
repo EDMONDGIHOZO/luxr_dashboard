@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import Wrapper from "../Wrapper";
+import { Redirect } from "react-router-dom";
 
 class CreateUser extends Component {
 	first_name = "";
@@ -10,6 +11,7 @@ class CreateUser extends Component {
 
 	state = {
 		roles: [],
+		redirect: false,
 	};
 
 	componentDidMount = async () => {
@@ -19,17 +21,22 @@ class CreateUser extends Component {
 		});
 	};
 
-	submitUser = (e) => {
+	submitUser = async (e) => {
 		e.preventDefault();
-		console.log({
-			first: this.first_name,
-			last: this.last_name,
+		await axios.post(`users`, {
 			email: this.email,
+			first_name: this.first_name,
+			last_name: this.last_name,
 			role_id: this.role_id,
 		});
+
+		this.setState({ redirect: true });
 	};
 
 	render() {
+		if (this.state.redirect) {
+			return <Redirect to={"/users"} />;
+		}
 		return (
 			<Wrapper>
 				<div className="grid place-items-center mx-2 my-20 sm:my-auto">

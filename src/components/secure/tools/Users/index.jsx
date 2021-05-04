@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Wrapper from "../Wrapper";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 // import Button from "../../../ui/Button";
 import axios from "axios";
 
@@ -17,7 +17,7 @@ class Users extends Component {
 	prev = "";
 
 	componentDidMount = async () => {
-		const response = await axios.get(`all-users?page=${this.page}`);
+		const response = await axios.get(`users?page=${this.page}`);
 		this.setState({ users: response.data.results });
 		console.log(response.data);
 
@@ -123,13 +123,12 @@ class Users extends Component {
 																	{" "}
 																	view{" "}
 																</button>
-																<button
-																	className="button bg-green-100 p-3 m-1 rounded font-bold uppercase"
-																	onClick={this.edit}
-																>
-																	{" "}
-																	Edit{" "}
-																</button>
+																<Link to={`/edit-user/${user.id}`}>
+																	<button className="button bg-green-100 p-3 m-1 rounded font-bold uppercase">
+																		{" "}
+																		Edit{" "}
+																	</button>
+																</Link>
 																<button
 																	className="button bg-red-500 p-3 m-1 rounded font-bold uppercase"
 																	onClick={() => this.deleteUser(user.id)}
