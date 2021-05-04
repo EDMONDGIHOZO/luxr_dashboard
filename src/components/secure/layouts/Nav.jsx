@@ -7,6 +7,8 @@ import Icon from "@material-ui/core/Icon";
 class Nav extends Component {
 	state = {
 		redirect: false,
+		active:
+			"border-green-500 text-green-500 bg-gradient-to-r from-white to-green-100 border-r-4",
 	};
 
 	logout = async (e) => {
@@ -22,24 +24,26 @@ class Nav extends Component {
 			<nav className="mt-6">
 				<div>
 					<Link
-						className="w-full font-thin uppercase text-gray-500 flex items-center p-4 my-2 transition-colors duration-200 justify-start bg-gradient-to-r from-white to-gray-100 border-r-4 border-gray-500 dark:from-gray-700 dark:to-gray-800 border-r-4 border-gray-500"
+						className="w-full font-thin uppercase text-gray-500 flex items-center p-4 my-2 transition-colors duration-200 justify-start dark:from-gray-700 dark:to-gray-800"
 						to={"/"}
-						activeClassName="bg-red-100 text-white"
+						activeClassName={this.state.active}
+						exact
 					>
 						<span className="text-left">
 							<Icon>dashboard</Icon>
 						</span>
 						<span className="mx-4 text-sm font-normal">Dashboard</span>
 					</Link>
-					<a
+					<Link
 						className="w-full font-thin uppercase text-gray-500 dark:text-gray-200 flex items-center p-4 my-2 transition-colors duration-200 justify-start hover:text-gray-500"
-						href="/users"
+						to={"/users"}
+						activeClassName={this.state.active}
 					>
 						<span className="text-left">
 							<Icon>manage_accounts</Icon>
 						</span>
 						<span className="mx-4 text-sm font-normal">Users</span>
-					</a>
+					</Link>
 					<a
 						className="w-full font-thin uppercase text-gray-500 dark:text-gray-200 flex items-center p-4 my-2 transition-colors duration-200 justify-start hover:text-gray-500"
 						href="/"

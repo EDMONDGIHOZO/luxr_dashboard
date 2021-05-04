@@ -5,6 +5,7 @@ import Users from "./components/secure/tools/Users";
 // public components
 import Login from "./components/auth/login";
 import Register from "./components/auth/Register";
+import CreateUser from "./components/secure/tools/Users/Create";
 import { BrowserRouter, Route } from "react-router-dom";
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
 				<Route path={"/users"} component={Users} />
 				<Route path={"/login"} component={Login} />
 				<Route path={"/register"} component={Register} />
+				<Route path={"/create-user"} component={CreateUser} />
 			</BrowserRouter>
 		</>
 	);
