@@ -3,6 +3,7 @@ import Wrapper from "../Wrapper";
 import { Link, NavLink } from "react-router-dom";
 // import Button from "../../../ui/Button";
 import axios from "axios";
+import Paginator from "../../layouts/Paginator";
 
 // import { Link } from "react-router-dom";
 
@@ -13,6 +14,7 @@ class Users extends Component {
 	};
 
 	page = 1;
+	last_page = 0;
 	nexter = "";
 	prev = "";
 
@@ -25,19 +27,14 @@ class Users extends Component {
 		this.previous = response.data.links.previous;
 	};
 
-	next = async () => {
-		if (this.nexter === null) return;
-		this.page++;
-		await this.componentDidMount();
-	};
-
-	prev = async () => {
-		this.page = 1;
-		await this.componentDidMount();
-	};
-
 	edit = () => {
 		alert("edit");
+	};
+
+	paginate = async (page) => {
+		this.page = page;
+
+		await this.componentDidMount();
 	};
 
 	deleteUser = async (id) => {
@@ -148,24 +145,10 @@ class Users extends Component {
 												})}
 											</tbody>
 										</table>
-										<ul className="m-3 p-3 flex justify-center">
-											<li className="mx-3">
-												<button
-													onClick={this.prev}
-													className="rounded px-3 py-2 m-1 border-b-4 border-l-2 shadow-lg bg-gray-800 hover:bg-gray-500 border-gray-900 text-white"
-												>
-													Prev
-												</button>
-											</li>
-											<li className="mx-3">
-												<button
-													onClick={this.next}
-													className="rounded px-3 py-2 m-1 border-b-4 border-l-2 shadow-lg bg-gray-800 hover:bg-gray-500 border-gray-900 text-white"
-												>
-													Next
-												</button>
-											</li>
-										</ul>
+										<Paginator
+											last_page={this.last_page}
+											handleChange={this.paginate}
+										/>
 									</div>
 								</div>
 							</div>

@@ -44,15 +44,16 @@ class Nav extends Component {
 						</span>
 						<span className="mx-4 text-sm font-normal">Users</span>
 					</Link>
-					<a
+					<Link
 						className="w-full font-thin uppercase text-gray-500 dark:text-gray-200 flex items-center p-4 my-2 transition-colors duration-200 justify-start hover:text-gray-500"
-						href="/"
+						to={"/products"}
+						activeClassName={this.state.active}
 					>
 						<span className="text-left">
 							<Icon>store_mall_directory</Icon>
 						</span>
 						<span className="mx-4 text-sm font-normal">Products</span>
-					</a>
+					</Link>
 					<a
 						className="w-full font-thin uppercase text-gray-500 dark:text-gray-200 flex items-center p-4 my-2 transition-colors duration-200 justify-start hover:text-gray-500"
 						href="/"
