@@ -68,6 +68,12 @@ class Users extends Component {
 										ADD NEW{" "}
 									</button>
 								</NavLink>
+								<NavLink to={"roles"}>
+									<button className="button bg-blue-500 p-2 text-white m-1 rounded font-bold uppercase">
+										{" "}
+										User Roles{" "}
+									</button>
+								</NavLink>
 								<div className="w-full">
 									<div className="bg-white shadow-md rounded my-6">
 										<table className="min-w-max w-full table-auto">
