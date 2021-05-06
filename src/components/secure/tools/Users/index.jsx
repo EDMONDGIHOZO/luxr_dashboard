@@ -38,7 +38,7 @@ class Users extends Component {
 	};
 
 	deleteUser = async (id) => {
-		// await axios.delete(`all-users/${id}`);
+		// await axios.delete(`users/${id}`);
 		this.setState({ users: this.state.users.filter((user) => user.id !== id) });
 	};
 	view = () => {

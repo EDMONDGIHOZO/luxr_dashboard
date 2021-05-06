@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Wrapper from "../Wrapper";
 import axios from "axios";
 import { NavLink } from "react-router-dom";
+import Deleter from "../../layouts/Deleter";
 
 class Roles extends Component {
 	state = {
@@ -18,17 +19,9 @@ class Roles extends Component {
 	};
 
 	deleteRole = async (role_id) => {
-		if (window.confirm("Are you sure for this undoable action?")) {
-			const res = await axios.delete(`roles/${role_id}`);
-			if (res.status === 204) {
-				alert("succesfully deleted the role");
-				this.setState({
-					roles: this.state.roles.filter((r) => r.id !== role_id),
-				});
-			} else {
-				alert("some error occured");
-			}
-		}
+		this.setState({
+			roles: this.state.roles.filter((r) => r.id !== role_id),
+		});
 	};
 
 	render() {
@@ -78,12 +71,11 @@ class Roles extends Component {
 													Edit
 												</button>
 											</NavLink>
-											<button
-												className="p-2 text-white rounded-md mx-4 bg-red-500"
-												onClick={() => this.deleteRole(role.id)}
-											>
-												Delete
-											</button>
+											<Deleter
+												endPoint={"roles"}
+												id={role.id}
+												handleDelete={this.deleteRole}
+											/>
 										</td>
 									</tr>
 								);

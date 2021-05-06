@@ -3,6 +3,7 @@ import Wrapper from "../Wrapper";
 import axios from "axios";
 import { NavLink, Redirect } from "react-router-dom";
 import Paginator from "../../layouts/Paginator";
+import Deleter from "../../layouts/Deleter";
 
 class Products extends Component {
 	state = {
@@ -21,12 +22,9 @@ class Products extends Component {
 	};
 
 	deleteProduct = async (id) => {
-		if (window.confirm("Are you sure you want to delete this product?")) {
-			await axios.delete(`products/delete/${id}`);
-			this.setState({
-				products: this.state.products.filter((pr) => pr.id !== id),
-			});
-		}
+		this.setState({
+			products: this.state.products.filter((pr) => pr.id !== id),
+		});
 	};
 
 	paginate = async (page) => {
@@ -41,7 +39,7 @@ class Products extends Component {
 		}
 		return (
 			<Wrapper>
-				<NavLink to={"create-user"}>
+				<NavLink to={"create-product"}>
 					<button className="button bg-green-500 p-2 text-white m-1 mx-2 rounded font-bold uppercase">
 						{" "}
 						ADD NEW{" "}
@@ -109,13 +107,11 @@ class Products extends Component {
 															Edit{" "}
 														</button>
 													</NavLink>
-													<button
-														className="button bg-red-500 p-3 m-1 rounded font-bold text-white uppercase"
-														onClick={() => this.deleteProduct(product.id)}
-													>
-														{" "}
-														Delete{" "}
-													</button>
+													<Deleter
+														endPoint={"products/delete"}
+														id={product.id}
+														handleDelete={this.deleteProduct}
+													/>
 												</td>
 											</tr>
 										);

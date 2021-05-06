@@ -7,6 +7,7 @@ import Login from "./components/auth/login";
 import Register from "./components/auth/Register";
 import CreateUser from "./components/secure/tools/Users/Create";
 import CreateRole from "./components/secure/tools/Roles/Create";
+import CreateProduct from "./components/secure/tools/Products/Create";
 import EditUser from "./components/secure/tools/Users/Edit";
 import EditRole from "./components/secure/tools/Roles/Edit";
 import Roles from "./components/secure/tools/Roles";
@@ -27,6 +28,7 @@ function App() {
 				<Route path={"/create-user"} component={CreateUser} />
 				<Route path={"/edit-user/:id"} component={EditUser} />
 				<Route path={"/products"} component={Products} />
+				<Route path={"/create-product"} component={CreateProduct} />
 			</BrowserRouter>
 		</>
 	);
