@@ -6,11 +6,12 @@ import Users from "./components/secure/tools/Users";
 import Login from "./components/auth/login";
 import Register from "./components/auth/Register";
 import CreateUser from "./components/secure/tools/Users/Create";
-import CreateRole from "./components/secure/tools/Roles/Create";
-import CreateProduct from "./components/secure/tools/Products/Create";
 import EditUser from "./components/secure/tools/Users/Edit";
+import CreateRole from "./components/secure/tools/Roles/Create";
 import EditRole from "./components/secure/tools/Roles/Edit";
 import Roles from "./components/secure/tools/Roles";
+import CreateProduct from "./components/secure/tools/Products/Create";
+import EditProduct from "./components/secure/tools/Products/Edit";
 import Products from "./components/secure/tools/Products";
 import { BrowserRouter, Route } from "react-router-dom";
 
@@ -29,6 +30,7 @@ function App() {
 				<Route path={"/edit-user/:id"} component={EditUser} />
 				<Route path={"/products"} component={Products} />
 				<Route path={"/create-product"} component={CreateProduct} />
+				<Route path={"/edit-product/:id"} component={EditProduct} />
 			</BrowserRouter>
 		</>
 	);

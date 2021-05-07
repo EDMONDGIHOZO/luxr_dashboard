@@ -101,7 +101,8 @@ class Products extends Component {
 														{" "}
 														view{" "}
 													</button>
-													<NavLink to={`/edit-user/${product.id}`}>
+
+													<NavLink to={`/edit-product/${product.id}`}>
 														<button className="button bg-green-100 p-3 m-1 rounded font-bold uppercase">
 															{" "}
 															Edit{" "}
